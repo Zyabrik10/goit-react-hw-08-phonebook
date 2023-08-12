@@ -1,15 +1,21 @@
-import ContactForm from './ContactForm/ContactForm';
-import Filter from './Filter/Filter';
-import ContactList from './ContactList/ContactList';
+import { Route, Routes } from 'react-router-dom';
+import GlobalLayout from './GlobalLayout/GlobalLayout';
+import LogIn from './LogIn/LogIn';
+import Register from './Register/Register';
+import Home from './Home/Home';
+import PhoneBook from './PhoneBook/PhoneBook';
 
 export const App = () => {
   return (
-    <div className="phonebook-box">
-      <h1 className="ph-title global-p">Phonebook</h1>
-      <ContactForm />
-      <h2 className="global-p">Contacts</h2>
-      <Filter />
-      <ContactList />
+    <div className="wrapper">
+      <Routes>
+        <Route path="/" element={<GlobalLayout />}>
+          <Route index element={<Home/>} />
+          <Route path='contacts' element={<PhoneBook/>} />
+          <Route path="login" element={<LogIn/>} />
+          <Route path="register" element={<Register/>} />
+        </Route>  
+      </Routes>
     </div>
   );
 };

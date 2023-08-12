@@ -1,0 +1,15 @@
+header {
+  padding: 10px 0;
+  border-bottom: thin solid rgba(194, 224, 255, 0.08);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  gap: 15px;
+}

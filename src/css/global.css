@@ -14,16 +14,20 @@ body {
 
 body {
   line-height: 1;
-  color: #111;
+  /* color: #eee; */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-  background: url(https://wallpaperaccess.com/full/457056.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
 
-  background-attachment: fixed;
+  /* background: #101418; */
+}
 
-  font-variant: small-caps;
+.wrapper {
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
 }
 
 .global-p,
@@ -35,6 +39,11 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.global-link {
+  color: currentColor;
+  text-decoration: none;
 }
 
 .global-button {
