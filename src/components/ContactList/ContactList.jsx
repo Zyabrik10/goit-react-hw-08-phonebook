@@ -16,9 +16,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+import { Toolbar, Typography } from '@mui/material';
 
 export default function ContactList() {
   const dispatch = useDispatch();
@@ -67,14 +68,13 @@ export default function ContactList() {
                 </TableCell>
                 <TableCell align="center">{number}</TableCell>
                 <TableCell align="right">
-                  
-                    <IconButton
-                      data-id={id}
-                      aria-label="delete"
-                      onClick={removeFromContactsListHandler}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
+                  <IconButton
+                    data-id={id}
+                    aria-label="delete"
+                    onClick={removeFromContactsListHandler}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}

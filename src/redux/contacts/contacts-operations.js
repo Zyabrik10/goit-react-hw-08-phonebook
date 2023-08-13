@@ -7,7 +7,6 @@ export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async (token, thunkAPI) => {
     try {
-      console.log('Token:', token);
       const response = await axios.get('/contacts', {
         headers: {
           Authorization: token,
@@ -50,8 +49,6 @@ export const addContact = createAsyncThunk(
           Authorization: token,
         },
       });
-
-      console.log(data);
 
       if (!data.filter(({ name }) => name === newContact.name).length) {
         const { data } = await axios.post(`/contacts`, newContact, {

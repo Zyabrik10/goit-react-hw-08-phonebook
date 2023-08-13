@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { selectAuth } from 'redux/auth/auth-selector';
@@ -11,9 +11,6 @@ export default function Header() {
   return (
     <header>
       <div className={`${css['header-container']} container`}>
-        <Link className="global-link" to="/">
-          Contacts inc.
-        </Link>
         <nav>
           <ul className={`global-list`}>
             <li>

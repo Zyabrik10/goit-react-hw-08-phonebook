@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
 
+.global-form-box {
   width: 100%;
   max-width: 400px;
-
   margin: 0 auto;
 }

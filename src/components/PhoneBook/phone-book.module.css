@@ -1,0 +1,13 @@
+.phonebook-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ph.title {
+  margin-bottom: 20px;
+}
+
+.contacts-box {
+  min-width: 300px;
+}

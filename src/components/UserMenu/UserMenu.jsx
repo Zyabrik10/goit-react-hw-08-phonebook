@@ -3,15 +3,17 @@ import { selectAuth } from "redux/auth/auth-selector";
 import { logOut } from "redux/auth/auth-operations";
 import css from './user-menu.module.css';
 import Button from '@mui/material/Button';
-
+import { useNavigate } from "react-router-dom";
 
 export default function UserMenu() {
     const dispatch = useDispatch();
     const { user, token } = useSelector(selectAuth);
+    const navigate = useNavigate();
 
     function buttonHandler(e) {
         e.preventDefault();
         dispatch(logOut(token));
+        navigate("/")
     }
     return (
         <div className={`${css['user-menu']}`}>

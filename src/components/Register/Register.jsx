@@ -1,6 +1,20 @@
 import { useDispatch } from 'react-redux';
 import { signUp } from 'redux/auth/auth-operations';
-import { TextField, Box, Button  } from '@mui/material';
+import { TextField, Box, Button, styled } from '@mui/material';
+
+const CssTextField = styled(TextField)({
+  '& label': {
+    color: '#9a9b9d',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#E0E3E7',
+    },
+    '&:hover fieldset': {
+      borderColor: '#4e8ebf',
+    },
+  },
+});
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -18,33 +32,34 @@ export default function Register() {
   }
 
   return (
-     <Box
-      className="global-form"
-      component="form"
-      // autoComplete="off"
-      onSubmit={formHandler}
-    >
-      <TextField
-        label="Name"
-        variant="outlined"
-        name="name"
-        required
-      />
-      <TextField
-        label="Email"
-        variant="outlined"
-        name="email"
-        type="email"
-        required
-      />
-      <TextField
-        label="Password"
-        variant="outlined"
-        name="password"
-        type="password"
-        required
-      />
-      <Button variant="contained" type='submit'>Sign In</Button>
-    </Box>
+    // autoComplete="off"
+    <section>
+      <h2
+        className="global-title"
+        style={{ textAlign: 'center', margin: '0 0 20px 0' }}
+      >
+        Sign Up
+      </h2>
+      <div className='global-form-box'>
+        <Box className="global-form" component="form" onSubmit={formHandler}>
+          <CssTextField label="Name" variant="outlined" name="name" />
+          <CssTextField
+            label="Email"
+            variant="outlined"
+            name="email"
+            type="email"
+          />
+          <CssTextField
+            label="Password"
+            variant="outlined"
+            name="password"
+            type="password"
+          />
+          <Button variant="contained" type="submit">
+            Sign In
+          </Button>
+        </Box>
+      </div>
+    </section>
   );
 }

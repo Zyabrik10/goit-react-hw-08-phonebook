@@ -1,20 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { signUp, logIn, logOut } from './auth-operations';
 
+const tempUser = JSON.parse(localStorage.getItem('user')) || null;
+const tempToken = localStorage.getItem('token') || null;
+
 const initialState = {
   user: {
-    name: null,
-    email: null,
+    name: tempUser ? tempUser.name : null,
+    email: tempUser ? tempUser.email : null,
   },
-  token: null,
-  isLogedIn: false,
+  token: tempToken,
+  isLogedIn: tempUser && tempToken ? true : false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [signUp.fulfilled]: (state, action) => {
+    [signUp.fulfilled]: () => {
       console.log('Signed up');
     },
     [logIn.fulfilled]: (state, action) => {
@@ -27,8 +30,11 @@ const authSlice = createSlice({
     },
     [logOut.fulfilled]: state => {
       console.log('Loged out');
-      state.user = initialState.user;
-      state.isLogedIn = initialState.isLogedIn;
+      state.user = {
+        name: null,
+        gmail: null,
+      };
+      state.isLogedIn = false;
       state.token = null;
     },
   },
