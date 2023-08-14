@@ -1,9 +1,8 @@
 import { logIn } from 'redux/auth/auth-operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TextField, Box, Button, styled } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { selectAuth } from 'redux/auth/auth-selector';
 
 const CssTextField = styled(TextField)({
@@ -55,12 +54,14 @@ export default function LogIn() {
             variant="outlined"
             name="email"
             type="email"
+            autoComplete="current-password"
           />
           <CssTextField
             label="Password"
             variant="outlined"
             name="password"
             type="password"
+            autoComplete="current-password"
           />
           <Button variant="contained" type="submit">
             Sign In{' '}

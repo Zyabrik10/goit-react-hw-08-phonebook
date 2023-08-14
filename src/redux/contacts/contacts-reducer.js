@@ -40,7 +40,6 @@ const contactsSlice = createSlice({
       state.error = action.payload;
     },
     [addContact.fulfilled]: (state, action) => {
-      console.log(action);
       if (action.payload) state.items.push(action.payload);
     },
     [addContact.error]: (state, action) => {

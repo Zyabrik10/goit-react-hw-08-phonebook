@@ -1,4 +1,3 @@
-import { inputFocus } from 'js/input-focus';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contacts-operations';
 import { selectAuth } from 'redux/auth/auth-selector';

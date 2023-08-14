@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { signUp, logIn, logOut } from './auth-operations';
+import { logIn, logOut } from './auth-operations';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const tempUser = JSON.parse(localStorage.getItem('user')) || null;
 const tempToken = localStorage.getItem('token') || null;
@@ -17,9 +19,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [signUp.fulfilled]: () => {
-      console.log('Signed up');
-    },
     [logIn.fulfilled]: (state, action) => {
       const { token, user } = action.payload;
 

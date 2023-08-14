@@ -19,7 +19,9 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { Toolbar, Typography } from '@mui/material';
+import { Spin } from 'components/Loading/Spin/Spin';
+
+import swal from 'sweetalert';
 
 export default function ContactList() {
   const dispatch = useDispatch();
@@ -34,9 +36,22 @@ export default function ContactList() {
   }, [dispatch, token]);
 
   function removeFromContactsListHandler({ currentTarget: target }) {
-    target.setAttribute('disabled', 'true');
-    const id = target.getAttribute('data-id');
-    dispatch(deleteContact({ id, token }));
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this contact!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(willDelete => {
+      if (willDelete) {
+        target.setAttribute('disabled', 'true');
+        const id = target.getAttribute('data-id');
+        dispatch(deleteContact({ id, token }));
+        swal('Contact has been deleted!', {
+          icon: 'success',
+        });
+      }
+    });
   }
 
   function returnContacts() {
@@ -96,5 +111,5 @@ export default function ContactList() {
     return error ? <p className="global-p">{error}</p> : showContacts();
   }
 
-  return isLoading ? <p className="global-p">loading...</p> : showError();
+  return isLoading ? <Spin /> : showError();
 }

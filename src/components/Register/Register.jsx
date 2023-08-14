@@ -42,18 +42,22 @@ export default function Register() {
       </h2>
       <div className='global-form-box'>
         <Box className="global-form" component="form" onSubmit={formHandler}>
-          <CssTextField label="Name" variant="outlined" name="name" />
+          <CssTextField label="Name" variant="outlined" name="name" required/>
           <CssTextField
             label="Email"
             variant="outlined"
             name="email"
             type="email"
+            autoComplete='current-password'
+            required
           />
           <CssTextField
             label="Password"
             variant="outlined"
             name="password"
             type="password"
+            autoComplete='current-password'
+            required
           />
           <Button variant="contained" type="submit">
             Sign In

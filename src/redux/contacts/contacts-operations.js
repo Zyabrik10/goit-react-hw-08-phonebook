@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import { alertObj } from 'js/alert-obj';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -28,9 +30,11 @@ export const deleteContact = createAsyncThunk(
           Authorization: token,
         },
       });
+      toast.success('Deleted', alertObj);
       return response.data.id;
     } catch (e) {
       thunkAPI.rejectWithValue(e.message);
+      toast.error('Somthing went wrong', alertObj);
     }
   }
 );
@@ -56,11 +60,12 @@ export const addContact = createAsyncThunk(
             Authorization: token,
           },
         });
+        toast.success('Added', alertObj);
 
         return data;
       }
 
-      alert('Such contact is already existing');
+      toast.info('Such contact is already existing', alertObj);
       return null;
     } catch (e) {
       thunkAPI.rejectWithValue(e.message);
