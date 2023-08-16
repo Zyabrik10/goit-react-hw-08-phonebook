@@ -6,6 +6,7 @@ import css from './phone-book.module.css';
 export default function PhoneBook() {
   return (
     <section>
+      <h1 className={ `${css.ph} ${css.title} global-title`}>PhoneBook</h1>
       <div className={css['phonebook-box']}>
         <div className={css['contacts-box']}>
           <ContactForm />

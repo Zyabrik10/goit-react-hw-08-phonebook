@@ -1,24 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
-import { selectAuth } from "redux/auth/auth-selector";
-import { logOut } from "redux/auth/auth-operations";
 import css from './user-menu.module.css';
 import Button from '@mui/material/Button';
-import { useNavigate } from "react-router-dom";
+import { BsFillPersonFill } from 'react-icons/bs';
+
+import { closeModalWindowByMousePressing, closeModalWindowOnKeyPressed } from 'js/modal-window';
+
+import cs from '../UserSideMenu/user-slide.module.css';
+
+import $ from 'jquery';
 
 export default function UserMenu() {
-    const dispatch = useDispatch();
-    const { user, token } = useSelector(selectAuth);
-    const navigate = useNavigate();
+  const buttonHandle = () => {
+    $('.aside-menu-box').fadeIn();
+    $('.aside-menu-box').addClass(cs["active"]);
+    $('.aside-menu-box').bind('mousedown', closeModalWindowByMousePressing);
+    $(document).bind('keydown', closeModalWindowOnKeyPressed);
+  }
 
-    function buttonHandler(e) {
-        e.preventDefault();
-        dispatch(logOut(token));
-        navigate("/")
-    }
-    return (
-        <div className={`${css['user-menu']}`}>
-            <p className="global-p">{user.email}</p>
-            <Button variant="outlined" onClick={buttonHandler}>Log out</Button>
-        </div>
-    );
+  return (
+    <div className={`${css['user-menu']}`}>
+        <Button variant="outlined" onClick={buttonHandle}>
+          <BsFillPersonFill />
+        </Button>
+    </div>
+  );
 }

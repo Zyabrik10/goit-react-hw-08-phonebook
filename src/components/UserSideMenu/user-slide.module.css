@@ -1,0 +1,9 @@
+.aside-menu {
+  right: 0;
+  transform: translateX(100%);
+  transition: 0.3s ease;
+}
+
+.aside-menu-box.active > .aside-menu {
+  transform: translateX(0);
+}

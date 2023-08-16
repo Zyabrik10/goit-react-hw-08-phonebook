@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contacts-operations';
 import { selectAuth } from 'redux/auth/auth-selector';
-
 import { TextField, Box, Button } from '@mui/material';
 
 export default function ContactForm() {
@@ -30,15 +29,15 @@ export default function ContactForm() {
       <Box
         className="global-form"
         component="form"
-        // autoComplete="off"
         onSubmit={formHandler}
       >
-        <TextField label="Name" variant="outlined" name="name" />
+        <TextField label="Name" variant="outlined" name="name" required />
         <TextField
           label="Number"
           variant="outlined"
           name="number"
           type="number"
+          required
         />
         <Button variant="contained" type="submit">
           Add Contact

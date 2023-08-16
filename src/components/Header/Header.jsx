@@ -9,10 +9,10 @@ export default function Header() {
   const { isLogedIn } = useSelector(selectAuth);
 
   return (
-    <header>
+    <header className={css["header"]}>
       <div className={`${css['header-container']} container`}>
         <nav>
-          <ul className={`global-list`}>
+          <ul className={`global-list ${css.navList}`}>
             <li>
               <NavLink className="nav-link global-link" to="/">
                 Home

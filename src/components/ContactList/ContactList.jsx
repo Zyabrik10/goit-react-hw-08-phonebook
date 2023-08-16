@@ -2,12 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/contacts-selector';
 import { selectFilteredContacts } from 'redux/filter/filter-selectors';
 import { useEffect } from 'react';
-import {
-  fetchContacts,
-  deleteContact,
-} from 'redux/contacts/contacts-operations';
+import { fetchContacts, deleteContact} from 'redux/contacts/contacts-operations';
 import { selectAuth } from 'redux/auth/auth-selector';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -15,13 +11,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-
 import { Spin } from 'components/Loading/Spin/Spin';
-
 import swal from 'sweetalert';
+import { ErrorComponent } from 'components/ErrorComponent/ErrorComponent';
 
 export default function ContactList() {
   const dispatch = useDispatch();
@@ -54,7 +48,7 @@ export default function ContactList() {
     });
   }
 
-  function returnContacts() {
+  function showContacts() {
     return (
       <TableContainer
         component={Paper}
@@ -68,47 +62,50 @@ export default function ContactList() {
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell align="center">Number</TableCell>
-              <TableCell align="right">Delete</TableCell>
+              <TableCell align="left">Number</TableCell>
+              <TableCell align="center">Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {filteredContacts.map(({ number, name, id }) => (
+            {filteredContacts && filteredContacts.length !== 0 ? (
+              filteredContacts.map(({ number, name, id }, index) => (
+                <TableRow
+                  key={id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  className="contacts-row"
+                >
+                  <TableCell component="th" scope="row">
+                    {name}
+                  </TableCell>
+                  <TableCell align="left">{number}</TableCell>
+                  <TableCell align="center">
+                    <IconButton
+                      data-id={id}
+                      aria-label="delete"
+                      onClick={removeFromContactsListHandler}
+                    >
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
               <TableRow
-                key={id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {name}
-                </TableCell>
-                <TableCell align="center">{number}</TableCell>
-                <TableCell align="right">
-                  <IconButton
-                    data-id={id}
-                    aria-label="delete"
-                    onClick={removeFromContactsListHandler}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
+                >
+                  <TableCell component="th" scope="row">
+                    No contacts
+                  </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
     );
   }
 
-  function showContacts() {
-    return filteredContacts.length ? (
-      returnContacts()
-    ) : (
-      <p className="global-p">No contacts</p>
-    );
-  }
-
   function showError() {
-    return error ? <p className="global-p">{error}</p> : showContacts();
+    return error ? <ErrorComponent errorMessage={error} /> : showContacts();
   }
 
   return isLoading ? <Spin /> : showError();

@@ -32,7 +32,6 @@ export default function Register() {
   }
 
   return (
-    // autoComplete="off"
     <section>
       <h2
         className="global-title"
