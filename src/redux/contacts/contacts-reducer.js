@@ -5,6 +5,8 @@ import {
   addContact,
 } from './contacts-operations';
 
+import { deleteAllContacts } from './contacts-operations';
+
 const initContacts = {
   items: [],
   isLoading: false,
@@ -44,6 +46,9 @@ const contactsSlice = createSlice({
     },
     [addContact.error]: (state, action) => {
       state.error = action.payload;
+    },
+    [deleteAllContacts.fulfilled]: state => {
+      state.items = [];
     },
   },
 });

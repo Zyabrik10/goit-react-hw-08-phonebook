@@ -36,7 +36,7 @@ export default function LogIn() {
   }
 
   useEffect(() => {
-    if (token) navigate('/contacts');
+    if (token) navigate('/phone-book');
   }, [navigate, token]);
 
   return (

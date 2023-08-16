@@ -14,7 +14,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<GlobalLayout />}>
           <Route index element={<Home/>} />
-          <Route path='contacts' element={<PhoneBook/>} />
+          <Route path='phone-book' element={<PhoneBook/>} />
           <Route path="login" element={<LogIn/>} />
           <Route path="register" element={<Register/>} />
         </Route>  

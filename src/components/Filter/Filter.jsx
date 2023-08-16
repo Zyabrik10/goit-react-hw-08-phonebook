@@ -8,12 +8,12 @@ export default function Filter() {
 
   return (
     <div>
-        <TextField
-          label="Find contact"
-          variant="outlined"
+      <TextField
+        label="Find contact"
+        variant="outlined"
         onChange={inputHandle}
-        style={{width:"100%"}}
-        />
+        style={{ width: '100%' }}
+      />
     </div>
   );
 }

@@ -72,3 +72,30 @@ export const addContact = createAsyncThunk(
     }
   }
 );
+
+export const deleteAllContacts = createAsyncThunk(
+  'contacts/deleteAllContacts',
+  async ({ contacts, token }, thunkAPI) => {
+    try {
+      for (const contact of contacts) {
+        const { id } = contact;
+
+        toast.promise(
+          axios.delete(`/contacts/${id}`, {
+            headers: {
+              Authorization: token,
+            },
+          }),
+          {
+            pending: 'Deleting in progress',
+            success: 'Deleting is done 👌',
+            error: 'Deleting rejected 🤯',
+          },
+          alertObj
+        );
+      }
+    } catch (e) {
+      thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
