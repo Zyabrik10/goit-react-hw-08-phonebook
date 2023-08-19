@@ -13,3 +13,13 @@
   display: flex;
   gap: 15px;
 }
+
+.logo {
+  display: none;
+}
+
+@media screen and (min-width: 460px) {
+  .logo {
+    display: block;
+  }
+}

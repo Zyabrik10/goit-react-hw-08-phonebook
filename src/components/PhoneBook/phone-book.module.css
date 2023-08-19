@@ -1,7 +1,16 @@
 .phonebook-box {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (min-width: 830px) {
+  .phonebook-box {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+  }
 }
 
 .ph.title {

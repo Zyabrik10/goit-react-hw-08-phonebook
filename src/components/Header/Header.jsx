@@ -38,12 +38,12 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export default function Header() {
-  const { isLogedIn } = useSelector(selectAuth);
+  const { isLoggedIn } = useSelector(selectAuth);
 
   return (
     <header className={css["header"]}>
       <div className={`${css['header-container']} container`}>
-        <Link to="/" className='global-link' style={{
+        <Link to="/" className={`${css.logo} global-link`} style={{
           fontVariant: "small-caps",
           fontSize:"20px"
         }}>Phonebook.ua</Link>
@@ -54,7 +54,7 @@ export default function Header() {
                 Home
               </StyledNavLink>
             </li>
-            {isLogedIn ? (
+            {isLoggedIn ? (
               <li>
                 <StyledNavLink className="global-link" to="/phone-book">
                   PhoneBook
@@ -64,7 +64,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        {!isLogedIn ? (
+        {!isLoggedIn ? (
           <ul className={`global-list`}>
             <li>
               <NavLink className="nav-link global-link" to="/login">
@@ -79,7 +79,7 @@ export default function Header() {
           </ul>
         ) : null}
 
-        {isLogedIn ? <UserMenu /> : null}
+        {isLoggedIn ? <UserMenu /> : null}
       </div>
     </header>
   );

@@ -6,11 +6,11 @@ import { UserSideMenu } from "components/UserSideMenu/UserSideMenu";
 import { useSelector } from "react-redux";
 
 export default function GlobalLayout() {
-    const { isLogedIn } = useSelector(selectAuth);
+    const { isLoggedIn } = useSelector(selectAuth);
 
     return (
         <>
-            {isLogedIn ? <UserSideMenu/> : null}
+            {isLoggedIn ? <UserSideMenu/> : null}
             <Header />
             <main style={{padding:"20px 0"}}>
                 <div className="container">

@@ -12,7 +12,7 @@ const initialState = {
     email: tempUser ? tempUser.email : null,
   },
   token: tempToken,
-  isLogedIn: tempUser && tempToken ? true : false,
+  isLoggedIn: tempUser && tempToken ? true : false,
 };
 
 const authSlice = createSlice({
@@ -24,7 +24,7 @@ const authSlice = createSlice({
 
       state.token = token;
       state.user = user;
-      state.isLogedIn = true;
+      state.isLoggedIn = true;
       console.log('Loged in');
     },
     [logOut.fulfilled]: state => {
@@ -33,7 +33,7 @@ const authSlice = createSlice({
         name: null,
         gmail: null,
       };
-      state.isLogedIn = false;
+      state.isLoggedIn = false;
       state.token = null;
     },
   },
