@@ -1,6 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { signUp } from 'redux/auth/auth-operations';
 import { TextField, Box, Button, styled } from '@mui/material';
+import { selectAuth } from 'redux/auth/auth-selector';
+import { useSelector } from 'react-redux';
+
+import { useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 
 const CssTextField = styled(TextField)({
   '& label': {
@@ -18,6 +24,13 @@ const CssTextField = styled(TextField)({
 
 export default function Register() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+  const { token } = useSelector(selectAuth);
+
+    useEffect(() => {
+    if (token) navigate('/phone-book');
+  }, [navigate, token]);
 
   function formHandler(e) {
     e.preventDefault();

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logIn, logOut } from './auth-operations';
+import { logIn, logOut, signUp } from './auth-operations';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -19,6 +19,13 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
+    [signUp.fulfilled]: (state, action) => {
+      const { token, user } = action.payload;
+      state.token = token;
+      state.user = user;
+      state.isLoggedIn = true;
+      console.log('Signed in');
+    },
     [logIn.fulfilled]: (state, action) => {
       const { token, user } = action.payload;
 

@@ -10,6 +10,7 @@ export const signUp = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/signup', user);
+      console.log(data);
       toast.success('Signed up', alertObj);
       return data;
     } catch (e) {
